@@ -43,12 +43,12 @@ public class PostService {
         postRepository.deleteById(id);
     }
 
-    public ResponsePostDTO convertToResponsePostDTO(PostEntity postEntity) {
+    private ResponsePostDTO convertToResponsePostDTO(PostEntity postEntity) {
         return new ResponsePostDTO(postEntity.getId(), postEntity.getUsername(), postEntity.getTitle(),
                 postEntity.getContent());
     }
 
-    public PostEntity converToPostEntity(RequestPostDTO requestPostDTO) {
+    private PostEntity converToPostEntity(RequestPostDTO requestPostDTO) {
         return new PostEntity(requestPostDTO.getUsername(), requestPostDTO.getTitle(),
                 requestPostDTO.getContent());
     }
