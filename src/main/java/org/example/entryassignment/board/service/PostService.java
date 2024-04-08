@@ -1,7 +1,7 @@
 package org.example.entryassignment.board.service;
 
 import java.util.List;
-import java.util.Objects;
+import java.util.Optional;
 
 import lombok.RequiredArgsConstructor;
 import org.example.entryassignment.board.dto.request.RequestPostDTO;
@@ -21,8 +21,12 @@ public class PostService {
     }
 
     public ResponsePostDTO getPostById(Long id) {
-        PostEntity postEntity = postRepository.findById(id).orElse(null);
-        return convertToResponsePostDTO(Objects.requireNonNull(postEntity));
+        Optional<PostEntity> postEntityOptional = postRepository.findById(id);
+        if (postEntityOptional.isPresent()) {
+            return convertToResponsePostDTO(postEntityOptional.get());
+        } else {
+            throw new IllegalArgumentException("Post not found with id: " + id);
+        }
     }
 
     public ResponsePostDTO createPost(RequestPostDTO requestPostDTO) {
@@ -32,11 +36,17 @@ public class PostService {
     }
 
     public ResponsePostDTO updatePost(long id, RequestPostDTO requestPostDTO) {
-        PostEntity postEntity = postRepository.findById(id).orElse(null);
-        Objects.requireNonNull(postEntity).setContent(requestPostDTO.getContent());
-        postEntity.setTitle(requestPostDTO.getTitle());
-        postRepository.save(postEntity);
-        return convertToResponsePostDTO(postEntity);
+        Optional<PostEntity> postEntityOptional = postRepository.findById(id);
+        if (postEntityOptional.isPresent()) {
+            PostEntity postEntity = postEntityOptional.get();
+            postEntity.setContent(requestPostDTO.getContent());
+            postEntity.setTitle(requestPostDTO.getTitle());
+            postEntity.setUsername(requestPostDTO.getUsername());
+            postRepository.save(postEntity);
+            return convertToResponsePostDTO(postEntity);
+        } else {
+            throw new IllegalArgumentException("Post not found with id: " + id);
+        }
     }
 
     public void deletePost(long id) {

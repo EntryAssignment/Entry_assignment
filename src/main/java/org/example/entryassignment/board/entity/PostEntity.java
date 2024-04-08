@@ -15,6 +15,9 @@ public class PostEntity {
     private String title;
     private String content;
 
+    public PostEntity() {
+    }
+
     public PostEntity(String username, String title, String content) {
         this.username = username;
         this.title = title;
