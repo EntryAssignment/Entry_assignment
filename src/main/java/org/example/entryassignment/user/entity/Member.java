@@ -1,56 +1,46 @@
 package org.example.entryassignment.user.entity;
 
+import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
+
+@Entity
+@Setter
+@Getter
 public class Member {
-    private String userName;
-    private long nickname;
-    private Long userId;
-    private Long userEmail;
-    private Long userPw;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private String userId;
+
+    @Column(unique = true)
+    private String userEmail;
+
+    private String userPw;
 
     public Member() {
     }
 
-    public Member(Long nickname) {
-        this.nickname = nickname;
-    }
-
-    public String getUserName() {
-        return userName;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
-
-    public long getNickname() {
-        return nickname;
-    }
-
-    public void setNickname(long nickname) {
-        this.nickname = nickname;
-    }
-
-    public Long getUserId() {
+    public String getUserId() {
         return userId;
     }
 
-    public void setUserId(Long userId) {
+    public void setUserId(String userId) {
         this.userId = userId;
     }
 
-    public Long getUserEmail() {
+    public String getUserEmail() {
         return userEmail;
     }
 
-    public void setUserEmail(Long userEmail) {
+    public void setUserEmail(String userEmail) {
         this.userEmail = userEmail;
     }
 
-    public Long getUserPw() {
+    public String getUserPw() {
         return userPw;
     }
 
-    public void setUserPw(Long userPw) {
+    public void setUserPw(String userPw) {
         this.userPw = userPw;
     }
 }

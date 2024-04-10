@@ -12,12 +12,6 @@ import java.util.List;
 @RequestMapping("/members")
 @RequiredArgsConstructor
 public class MemberController {
-    final MemberService memberService;
-
-    @GetMapping
-    public List<>
-
-
-
+    private final MemberService memberService;
 
 }
