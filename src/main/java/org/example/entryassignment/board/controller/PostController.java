@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 @RequestMapping("/posts")
 @RequiredArgsConstructor
 public class PostController {
-    final PostService postService;
+    private final PostService postService;
 
     @GetMapping
     public List<ResponsePostDTO> getAllPosts() {
@@ -32,13 +32,13 @@ public class PostController {
     }
 
     @PostMapping
-    public ResponsePostDTO createPost(@RequestBody RequestPostDTO requestPostDTO) {
-        return postService.createPost(requestPostDTO);
+    public void createPost(@RequestBody RequestPostDTO requestPostDTO) {
+        postService.createPost(requestPostDTO);
     }
 
     @PutMapping("/{id}")
-    public ResponsePostDTO updatePost(@PathVariable("id") Long id, @RequestBody RequestPostDTO requestPostDTO) {
-        return postService.updatePost(id, requestPostDTO);
+    public void updatePost(@PathVariable("id") Long id, @RequestBody RequestPostDTO requestPostDTO) {
+        postService.updatePost(id, requestPostDTO);
     }
 
     @DeleteMapping("/{id}")

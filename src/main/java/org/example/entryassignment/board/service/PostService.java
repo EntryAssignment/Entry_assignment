@@ -17,25 +17,24 @@ public class PostService {
 
     public List<ResponsePostDTO> getAllPosts() {
         List<PostEntity> posts = postRepository.findAll();
-        return posts.stream().map(this::convertToResponsePostDTO).toList();
+        return posts.stream().map(ResponsePostDTO::new).toList();
     }
 
     public ResponsePostDTO getPostById(Long id) {
         Optional<PostEntity> postEntityOptional = postRepository.findById(id);
         if (postEntityOptional.isPresent()) {
-            return convertToResponsePostDTO(postEntityOptional.get());
+            return new ResponsePostDTO(postEntityOptional.get());
         } else {
             throw new IllegalArgumentException("Post not found with id: " + id);
         }
     }
 
-    public ResponsePostDTO createPost(RequestPostDTO requestPostDTO) {
-        PostEntity postEntity = converToPostEntity(requestPostDTO);
-        postEntity = postRepository.save(postEntity);
-        return convertToResponsePostDTO(postEntity);
+    public void createPost(RequestPostDTO requestPostDTO) {
+        PostEntity postEntity = new PostEntity(requestPostDTO);
+        postRepository.save(postEntity);
     }
 
-    public ResponsePostDTO updatePost(long id, RequestPostDTO requestPostDTO) {
+    public void updatePost(long id, RequestPostDTO requestPostDTO) {
         Optional<PostEntity> postEntityOptional = postRepository.findById(id);
         if (postEntityOptional.isPresent()) {
             PostEntity postEntity = postEntityOptional.get();
@@ -43,7 +42,6 @@ public class PostService {
             postEntity.setTitle(requestPostDTO.getTitle());
             postEntity.setUsername(requestPostDTO.getUsername());
             postRepository.save(postEntity);
-            return convertToResponsePostDTO(postEntity);
         } else {
             throw new IllegalArgumentException("Post not found with id: " + id);
         }
@@ -51,15 +49,5 @@ public class PostService {
 
     public void deletePost(long id) {
         postRepository.deleteById(id);
-    }
-
-    private ResponsePostDTO convertToResponsePostDTO(PostEntity postEntity) {
-        return new ResponsePostDTO(postEntity.getId(), postEntity.getUsername(), postEntity.getTitle(),
-                postEntity.getContent());
-    }
-
-    private PostEntity converToPostEntity(RequestPostDTO requestPostDTO) {
-        return new PostEntity(requestPostDTO.getUsername(), requestPostDTO.getTitle(),
-                requestPostDTO.getContent());
     }
 }

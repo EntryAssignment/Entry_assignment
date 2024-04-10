@@ -4,12 +4,18 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import lombok.Getter;
+import lombok.Setter;
+import org.example.entryassignment.board.dto.request.RequestPostDTO;
 
 @Entity
+@Setter
+@Getter
 public class PostEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
 
     private String username;
     private String title;
@@ -18,37 +24,9 @@ public class PostEntity {
     public PostEntity() {
     }
 
-    public PostEntity(String username, String title, String content) {
-        this.username = username;
-        this.title = title;
-        this.content = content;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getContent() {
-        return content;
-    }
-
-    public void setContent(String content) {
-        this.content = content;
+    public PostEntity(RequestPostDTO requestPostDTO) {
+        this.username = requestPostDTO.getUsername();
+        this.title = requestPostDTO.getTitle();
+        this.content = requestPostDTO.getContent();
     }
 }
