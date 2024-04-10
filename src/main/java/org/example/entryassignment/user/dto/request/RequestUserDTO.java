@@ -1,17 +1,13 @@
 package org.example.entryassignment.user.dto.request;
 
 public class RequestUserDTO {
-    private Long nickname;
+    private Long userId;
 
-    public RequestUserDTO(Long nickname) {
-        this.nickname = nickname;
+    public Long getUserId() {
+        return userId;
     }
 
-    public Long getNickname() {
-        return nickname;
-    }
-
-    public void setNickname(Long nickname) {
-        this.nickname = nickname;
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 }
