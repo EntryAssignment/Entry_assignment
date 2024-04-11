@@ -1,6 +1,7 @@
 package org.example.entryassignment.user.entity;
 
 import jakarta.persistence.*;
+import org.example.entryassignment.user.dto.request.UserRequest;
 
 @Entity
 public class Member {
@@ -15,4 +16,11 @@ public class Member {
     private String userEmail;
 
     private String userPassword;
+
+
+    public Member(UserRequest request) {
+        this.accountId = request.getAccountId();
+        this.userEmail = request.getUserEmail();
+        this.userPassword = request.getUserPassword();
+    }
 }

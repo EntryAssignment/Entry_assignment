@@ -1,17 +1,20 @@
 package org.example.entryassignment.user.controller;
 
 import lombok.RequiredArgsConstructor;
-import org.example.entryassignment.user.service.MemberService;
-import org.springframework.beans.factory.annotation.Autowired;
-import orgspringframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
+import org.example.entryassignment.user.dto.request.UserRequest;
+import org.example.entryassignment.user.service.SignupService;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/members")
 @RequiredArgsConstructor
 public class MemberController {
-    private final MemberService memberService;
-
+    private final SignupService signupService;
+    @PostMapping("/signup")
+    public void signup(@RequestBody UserRequest userRequest) {
+        signupService.signup(userRequest);
+    }
 }

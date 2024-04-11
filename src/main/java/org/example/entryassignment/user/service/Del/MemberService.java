@@ -1,4 +1,4 @@
-package org.example.entryassignment.user.service;
+package org.example.entryassignment.user.service.Del;
 
 import org.example.entryassignment.user.entity.Member;
 import org.example.entryassignment.user.repository.MemberRepository;
@@ -30,7 +30,7 @@ public class MemberService {
                 });
     }
 
-    
+
     /**
      회원삭제
      **/

@@ -8,12 +8,11 @@ import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
-public class SignupService {
+public class DeleteIdService {
     private final MemberRepository memberRepository;
 
-    public void signup(UserRequest request) {
+    public void DeleteId (UserRequest request) {
         Member member = new Member(request);
-        memberRepository.save(member);
+        memberRepository.delete(member);
     }
-
 }
