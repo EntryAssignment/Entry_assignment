@@ -1,4 +1,4 @@
-package org.example.entryassignment.user.controller;
+package org.example.entryassignment.user.controller.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.example.entryassignment.user.dto.request.UserRequest;

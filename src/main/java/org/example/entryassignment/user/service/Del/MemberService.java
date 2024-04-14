@@ -1,3 +1,4 @@
+/**
 package org.example.entryassignment.user.service.Del;
 
 import org.example.entryassignment.user.entity.Member;
@@ -13,9 +14,7 @@ public class MemberService {
     }
 
 
-    /**
-    회원가입
-     **/
+
     public String join(Member member) {
         validateDuplicateMember(member);
         return member.getUserId();
@@ -31,12 +30,11 @@ public class MemberService {
     }
 
 
-    /**
-     회원삭제
-     **/
+
     public void deleteMember(String id) {
         memberRepository.deleteById(id);
     }
 
 
 }
+**/
