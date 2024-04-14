@@ -14,7 +14,7 @@ public class ViewService {
     public UserResponse memberView(long id) {
         Member member = memberRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("유저는 NULL일 수 없습니다."));
-        return new UserResponse();
+        return new UserResponse(member.getAccountId(), member.getUserEmail());
     }
 
 }
