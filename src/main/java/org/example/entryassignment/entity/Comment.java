@@ -1,26 +1,28 @@
 package org.example.entryassignment.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
-import org.example.entryassignment.dto.request.CommentRequest;
+import lombok.NoArgsConstructor;
+
+import javax.persistence.*;
 
 @Getter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 @Entity
 public class Comment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
     private String content;
     private String username;
-    private long postId;
+    private Long postId;
 
-    public Comment(CommentRequest request) {
-        this.content = request.getContent();
-        this.username = request.getUsername();
-        this.postId = request.getPostId();
+
+    public void update(String content){
+        this.content = content;
     }
 }

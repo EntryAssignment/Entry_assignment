@@ -17,10 +17,10 @@ public class QueryAllCommentService {
     public CommentResponse queryAllComment(Long postId){
         return CommentResponse.builder()
                 .postId(postId)
-                .responseList(commentRepository.findAllByPostId(postId)
+                .responseList(commentRepository.findByPostId(postId)
                         .stream()
                         .map(CommentListResponse::commentListResponse)
-                        .collect(Collectors.toList()))
+                        .toList())
                 .build();
     }
 }

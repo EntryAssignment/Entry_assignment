@@ -12,6 +12,12 @@ public class CreateCommentService {
     private final CommentRepository commentRepository;
 
     public void createComment(CommentRequest request){
-        Comment comment = new Comment(request);
+        commentRepository.save(
+                Comment.builder()
+                        .username(request.username())
+                        .content(request.content())
+                        .postId(request.postId())
+                        .build()
+        );
     }
 }

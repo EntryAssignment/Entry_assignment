@@ -7,12 +7,21 @@ import lombok.NoArgsConstructor;
 
 import java.util.List;
 
-@Getter
-@NoArgsConstructor
-@AllArgsConstructor
 @Builder
-public class
-CommentResponse {
-    private Long postId;
-    private List<CommentListResponse> responseList;
+public record CommentResponse (
+        Long postId,
+        List<CommentListResponse> responseList
+) {
+
+    public static CommentResponse of(Long postId, List<CommentListResponse> responseList) {
+        return CommentResponse.builder()
+                .postId(postId)
+                .responseList(responseList)
+                .build();
+//        return new CommentResponse(
+//                postId,
+//                responseList
+//        );
+    }
+
 }
