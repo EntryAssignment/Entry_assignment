@@ -2,6 +2,7 @@ package org.example.entryassignment.user.entity;
 
 import jakarta.persistence.*;
 import org.example.entryassignment.user.dto.request.UserRequest;
+import org.example.entryassignment.user.dto.response.UserResponse;
 
 @Entity
 public class Member {
@@ -23,4 +24,5 @@ public class Member {
         this.userEmail = request.getUserEmail();
         this.userPassword = request.getUserPassword();
     }
+
 }
